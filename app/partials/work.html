@@ -10,12 +10,40 @@
                 <div class="form-group">
                   <label for="date" class="col-md-2 col-sm-2 control-label">Fecha</label>
                   <div class="col-md-6 col-sm-8">
-                    <div id='date' class='input-group date'>
+
+                    <!-- <div id='date' class='input-group date'>
                       <input ng-model="date" type='text' class="form-control" placeholder="dd/mm/aaaa" required>
                       <span class="input-group-addon">
                         <i class="glyphicon glyphicon-calendar"></i>
                       </span>
+                    </div> -->
+
+                    <!-- <div class="dropdown">
+                      <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                        <div class="input-group"><input type="text" class="form-control" data-ng-model="data.dateDropDownInput"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                      </a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <datetimepicker data-ng-model="data.dateDropDownInput" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+                      </ul>
+                    </div> -->
+
+                    <div id="example" ng-app="KendoDemos">
+                        <div class="demo-section k-content" ng-controller="MyCtrl">
+                        <h4>Select date and time:</h4>
+                          <input kendo-date-time-picker
+                                 ng-model="str"
+                                 k-ng-model="obj" />
+                        <pre>
+                          str: {{ str }}
+                          obj: {{ obj }}
+                          typeof obj: {{ getType(obj) }}
+                          obj instanceof Date: {{ isDate(obj) }}
+                        </pre>
+                        </div>
                     </div>
+
+
                   </div>
                 </div>
                 <div class="form-group">

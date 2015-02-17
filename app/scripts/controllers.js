@@ -83,7 +83,7 @@
           };
       }])
 
-      .controller('WorkCtrl', ['$rootScope', '$scope', 'Main', '$http', function($rootScope, $scope, Main) {
+      .controller('WorkCtrl', ['$rootScope', '$scope', 'Main', '', function($rootScope, $scope, Main) {
 
           // Nos traemos todos los datos almacenados en la colección de datos
           Main.work(function(res) {

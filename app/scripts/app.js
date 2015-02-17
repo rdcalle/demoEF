@@ -3,7 +3,8 @@
 
   angular.module('demoEF', [
       'ngRoute',
-      'angular-loading-bar'
+      'angular-loading-bar',
+      'kendo.directives'
   ])
   .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
 
