@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('angularRestfulAuth')
+  angular.module('demoEF')
       .factory('Main', ['$http', function($http){
           var baseUrl = "http://localhost:3001";
           function changeUser(user) {
@@ -56,6 +56,9 @@
                   changeUser({});
                   window.localStorage.removeItem('token');
                   success();
+              },
+              work: function(success, error) {
+                  $http.get(baseUrl + '/work').success(success).error(error);
               }
           };
       }

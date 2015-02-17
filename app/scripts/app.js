@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('angularRestfulAuth', [
+  angular.module('demoEF', [
       'ngRoute',
       'angular-loading-bar'
   ])

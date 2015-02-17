@@ -7,7 +7,8 @@ var mongoose   = require("mongoose");
 var app        = express();
 
 var port = process.env.PORT || 3001;
-var User     = require('./app/models/User');
+var User = require('./app/models/User');
+var Data = require('./app/models/Data');
 
 // Connect to DB
 mongoose.connect(process.env.MONGO_URL || 'mongodb://localhost/demoEF');
@@ -62,10 +63,10 @@ app.post('/signup', function(req, res) {
                     data: "¡Usuario ''" + req.body.email + "'' ya existe!\n Pruebe con otro"
                 });
             } else {
-                var userModel = new User();
-                userModel.email = req.body.email;
-                userModel.password = req.body.password;
-                userModel.save(function(err, user) {
+                var dataModel = new User();
+                dataModel.email = req.body.email;
+                dataModel.password = req.body.password;
+                dataModel.save(function(err, user) {
                     user.token = jwt.sign(user, process.env.JWT_SECRET || 'el gran secreto');
                     user.save(function(err, user1) {
                         res.json({
@@ -123,6 +124,53 @@ app.delete('/delete/:id', function(req, res) {
                 type: true,
                 data: user,
             });
+        }
+    });
+});
+
+app.get('/work', function(req, res) {
+    Data.find(function(err, data) {
+        if (err) {
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+        } else {
+            res.json({
+                type: true,
+                data: data
+            });
+        }
+    });
+});
+
+app.post('/newdata', function(req, res) {
+    User.findOne({date: req.body.date}, function(err, data) {
+        if (err) {
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+        } else {
+            if (data) {
+                res.json({
+                    type: false,
+                    data: "Fecha ''" + req.body.date + "'' ya tiene dato grabado!\n Elija otra fecha o modifique el dato"
+                });
+            } else {
+                var dataModel = new Data();
+                dataModel.date = req.body.date;
+                dataModel.value = req.body.value;
+                dataModel.user = "";
+                dataModel.save(function(err, user) {
+                    data.save(function(err, user1) {
+                        res.json({
+                            type: true,
+                            data: data
+                        });
+                    });
+                });
+            }
         }
     });
 });
