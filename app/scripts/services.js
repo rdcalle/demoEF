@@ -59,6 +59,9 @@
               },
               work: function(success, error) {
                   $http.get(baseUrl + '/work').success(success).error(error);
+              },
+              newdata: function(data, success, error) {
+                  $http.post(baseUrl + '/newdata', data).success(success).error(error);
               }
           };
       }

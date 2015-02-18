@@ -83,11 +83,13 @@
           };
       }])
 
-      .controller('WorkCtrl', ['$rootScope', '$scope', 'Main', '', function($rootScope, $scope, Main) {
+      .controller('WorkCtrl', ['$rootScope', '$scope', 'Main', function($rootScope, $scope, Main) {
+
+          kendo.culture("es-ES"); // Para poner el DatePicker de kendo en español
 
           // Nos traemos todos los datos almacenados en la colección de datos
           Main.work(function(res) {
-            $scope.data = res.data;
+            $scope.datas = res.data;
           }, function() {
             $rootScope.error = 'Falló el acceso a los datos';
           });
@@ -95,13 +97,17 @@
           // Almacena el nuevo dato
           $scope.newData = function() {
               var formData = {
-                  date: $scope.date,
+                  date: $scope.objDate,
                   value: $scope.value
               };
 
-              Main.save(formData, function(res) {
+              Main.newdata(formData, function(res) {
                   if (res.type === false) {
                       alert(res.data);
+                  } else {
+                      $scope.datas.push(res.data);
+                      $scope.date = {};
+                      $scope.value = "";
                   }
               }, function() {
                   $rootScope.error = 'Falló grabar el dato';

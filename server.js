@@ -155,18 +155,18 @@ app.post('/newdata', function(req, res) {
             if (data) {
                 res.json({
                     type: false,
-                    data: "Fecha ''" + req.body.date + "'' ya tiene dato grabado!\n Elija otra fecha o modifique el dato"
+                    data: "No se pudo añadir.\n Elija otra fecha o modifique el dato"
                 });
             } else {
                 var dataModel = new Data();
-                dataModel.date = req.body.date;
+                dataModel.date = new Date(req.body.date);
                 dataModel.value = req.body.value;
-                dataModel.user = "";
-                dataModel.save(function(err, user) {
-                    data.save(function(err, user1) {
+                // dataModel.user = "";
+                dataModel.save(function(err, data) {
+                    data.save(function(err, thedata) {
                         res.json({
                             type: true,
-                            data: data
+                            data: thedata
                         });
                     });
                 });
