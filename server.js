@@ -160,6 +160,7 @@ app.post('/newdata', function(req, res) {
             } else {
                 var dataModel = new Data();
                 dataModel.date = new Date(req.body.date);
+                dataModel.dateString = req.body.dateString;
                 dataModel.value = req.body.value;
                 // dataModel.user = "";
                 dataModel.save(function(err, data) {
@@ -172,6 +173,57 @@ app.post('/newdata', function(req, res) {
                 });
             }
         }
+    });
+});
+
+app.post('/modifydata', function(req, res) {
+    Data.update({_id: req.body._id}, {
+        $set: { date: req.body.date, value: req.body.value, dateString: req.body.dateString }
+      },function(err) {
+        if (err) {
+          console.log("not updated");
+        } else {
+          res.json( { type: true } );
+        }
+
+    });
+});
+
+app.get('/getData/:id', function(req, res) {
+    Data.findOne({_id: req.params.id}, function(err, data) {
+        if (err) {
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+        } else {
+            if (data) {
+                res.json({
+                    type: true,
+                    data: data
+                });
+            } else {
+                res.json({
+                    type: false,
+                    data: "No se encontró"
+                });
+            }
+        }
+    });
+});
+
+app.delete('/deleteData/:id', function(req, res) {
+    Data.remove({_id: req.params.id}, function(err) {
+      if (err) {
+        res.json({
+            type: false,
+            data: "Error occured: " + err
+        });
+      } else {
+        res.json({
+            type: true
+        });
+      }
     });
 });
 

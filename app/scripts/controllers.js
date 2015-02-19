@@ -98,7 +98,8 @@
           $scope.newData = function() {
               var formData = {
                   date: $scope.objDate,
-                  value: $scope.value
+                  value: $scope.value,
+                  dateString: $scope.date
               };
 
               Main.newdata(formData, function(res) {
@@ -113,6 +114,45 @@
                   $rootScope.error = 'Falló grabar el dato';
               });
           };
+
+          // Almacena el nuevo dato
+          $scope.modify = function() {
+            var line = this;
+            var DMY = line.dataline.dateString.split("/");
+            line.dataline.date = new Date(DMY[2], String(Number(DMY[1])-1), DMY[0]);
+            Main.modifydata(line.dataline, function(res) {
+              if(res) {
+                line.canEdit = false;
+              }
+            }, function() {
+              $rootScope.error = 'Falló modificar los datos';
+            });
+          };
+
+          // Resetea los campos al cancelar la entrada de datos a editar
+          $scope.resetFields = function() {
+            var line = this;
+            line.canEdit = false;
+            Main.getData(line.dataline._id, function(res) {
+              line.dataline = res.data;
+            }, function() {
+              $rootScope.error = 'Falló recuperar esta línea de datos';
+            });
+          };
+
+          $scope.deleteData = function() {
+            var line = this;
+            Main.deleteData(line.dataline._id, function(res) {
+              if(res) {
+                var i = $scope.datas.indexOf(line.dataline);
+                $scope.datas.splice(i, 1);
+                line.dataline = {};
+              }
+            }, function() {
+              $rootScope.error = 'Falló eliminar el dato';
+            });
+          };
+
       }]);
 
 }());

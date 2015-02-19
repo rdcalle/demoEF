@@ -10,6 +10,10 @@ a:link, a:hover, a:active, a:visited {
     text-decoration: none;
 }
 
+button:focus {
+  outline:0 !important;
+}
+
 .panel-datos,
 .panel-visualizacion {
   min-height: 450px;
@@ -36,19 +40,67 @@ table.table {
   max-width: 170px;
 }
 
-td a.glyphicon {
-    font-size: 16px;
-    color: darksalmon;
-    padding-top: 3px;
+.icon {
+  font-size: 14px;
 }
 
-td a:first-child.glyphicon {
-   color: darkgray;
+.icon {
+  ouline: none;
 }
 
-.edit-input {
-  width: 82px;
-  padding: 0 5px;
+.icon-ok {
+   color: darkseagreen;
+}
+
+.icon-ok:hover {
+  cursor: pointer;
+  color: darkgreen !important;
+}
+
+.icon-edit {
+   color: darkgray !important;
+}
+
+.icon-edit:hover {
+  color: black !important;
+}
+
+.icon-trash {
+   color: darksalmon;
+}
+
+.icon-trash:hover {
+  color: brown !important;
+}
+
+.icon-remove {
+  color: coral;
+}
+
+.icon-remove:hover {
+  color: darkred !important;
+}
+
+.transparent-button {
+  border: 0;
+  background-color: transparent;
+  cursor: default;
+  padding: 0;
+}
+
+.edit-input-date,
+.edit-input-value {
   border-radius: 3px;
   border: 1px solid #DDD;
+  margin-left: -5px;
+  padding-left: 3px;
+}
+
+.edit-input-date {
+  width: 82px;
+  height: 24px;
+}
+
+.edit-input-value {
+  width: 50px;
 }

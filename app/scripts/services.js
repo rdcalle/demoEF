@@ -62,6 +62,15 @@
               },
               newdata: function(data, success, error) {
                   $http.post(baseUrl + '/newdata', data).success(success).error(error);
+              },
+              modifydata: function(data, success) {
+                  $http.post(baseUrl + '/modifydata', data).success(success);
+              },
+              getData: function(id, success, error) {
+                  $http.get(baseUrl + '/getData/' +id).success(success).error(error);
+              },
+              deleteData: function(id, success, error) {
+                  $http.delete(baseUrl + '/deleteData/' +id).success(success).error(error);
               }
           };
       }

@@ -4,6 +4,7 @@ var Schema       = mongoose.Schema;
 var DataSchema   = new Schema({
     date: { type: Date, default: Date.now },
     value: { type: Number, min: 0, max: 100 },
+    dateString: { type: String }
     // user: { type: Schema.ObjectId, ref: "User"}
 });
 
