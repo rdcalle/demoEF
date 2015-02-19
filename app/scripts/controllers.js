@@ -3,7 +3,8 @@
 
   /* Controllers */
 
-  angular.module('demoEF')
+var app = angular.module('demoEF')
+
       .controller('HomeCtrl', ['$rootScope', '$scope', '$location', 'Main', function($rootScope, $scope, $location, Main) {
 
           $scope.signin = function() {

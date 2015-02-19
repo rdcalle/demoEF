@@ -6,8 +6,10 @@
           </div>
           <div class="panel-body">
             <div class="panel-datos">
-              <form ng-submit="newData()"
-                  name="dataForm" class="form-horizontal" role="form">
+
+              <form name="dataForm" ng-submit="newData()"
+                  class="form-horizontal" role="form">
+
                 <div class="form-group">
                   <label for="date" class="col-md-2 col-sm-2 control-label">Fecha</label>
                   <div class="col-md-6 col-sm-8">
@@ -19,6 +21,7 @@
                            required/>
                   </div>
                 </div>
+
                 <div class="form-group">
                   <label for="value" class="col-md-2 col-sm-2 control-label">Valor</label>
                   <div class="col-md-4 col-sm-4">
@@ -30,7 +33,9 @@
                     </button>
                   </div>
                 </div>
+
               </form>
+
               <div class="tabla-datos">
                 <table class="table table-striped">
                   <thead>
@@ -40,11 +45,11 @@
                     <tr ng-repeat="dataline in datas | orderBy: 'date'">
                       <div>
 
-                        <form name="lineForm" novalidate>
+                        <form>
                           <td>
                               <div ng-show="canEdit">
                                 <input name="date" type="text" ng-model="dataline.dateString"
-                                  class="form.control edit-input-date" ng-pattern="^\d{2}\/\d{2}\/\d{4}$" required>
+                                  class="form.control edit-input-date" pattern="^\d{2}\/\d{2}\/\d{4}$" required>
                               </div>
                               <div ng-hide="canEdit">
                                 {{ dataline.date | date:'dd/MM/yyyy' }}
@@ -52,7 +57,7 @@
                           </td>
                           <td>
                               <div ng-show="canEdit">
-                                <input name="value" type="number" min="0" max="100" ng-minlength="1" ng-maxlength="3" ng-model="dataline.value"
+                                <input name="value" type="number" min="0" max="100" ng-model="dataline.value"
                                   class="form.control edit-input-value" required>
                               </div>
                               <div ng-hide="canEdit">
@@ -60,22 +65,13 @@
                               </div>
                           </td>
                           <td>
-                            <!-- <a href="" ng-show="canEdit" ng-click="$('#form').submit()" title="grabar" class="glyphicon glyphicon-ok icon icon-ok" role="button"> -->
-                            <!-- <button type="submit" ng-show="canEdit" class="transparent-button" title="grabar"> -->
-                            <button type="submit" ng-disabled="lineForm.$invalid" ng-click="modify()" ng-show="canEdit" class="transparent-button" title="grabar">
+                            <button ng-click="modify(form)" ng-show="canEdit" class="transparent-button" title="grabar">
                                 <span class="glyphicon glyphicon-ok icon icon-ok"></span>
                             </button>
                             <a href="" ng-hide="canEdit" ng-click="canEdit = true" title="modificar" class="glyphicon glyphicon-edit icon icon-edit" role="button"></a>
                             <a href="" ng-show="canEdit" ng-click="resetFields()" title="cancelar" class="glyphicon glyphicon-remove icon icon-remove" role="button"></a>
                             <a href="" ng-hide="canEdit" ng-click="deleteData()" title="eliminar" class="glyphicon glyphicon-trash icon icon-trash" role="button"></a>
                           </td>
-                          <!-- <div id="error" ng-class="{ active : lineForm.$error } ">
-                             <ul>
-                               <li ng-show="lineForm.value.$error.minlength">El valor es corto</li>
-                               <li ng-show="lineForm.value.$error.maxlength">El valor es largo</li>
-                               <li ng-show="lineForm.date.$error.pattern">La fecha no cumple el patrón 'dd/mm/aaaa'</li>
-                             </ul>
-                          </div> -->
                         </form>
 
                       </div>
@@ -83,7 +79,6 @@
                   </tbody>
                 </table>
               </div>
-              <!-- <pre>-: {{ date }} -: {{ objDate }}</pre> -->
             </div>
           </div>
       </div>
