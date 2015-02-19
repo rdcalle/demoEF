@@ -119,7 +119,7 @@
           $scope.modify = function() {
             var line = this;
             var DMY = line.dataline.dateString.split("/");
-            line.dataline.date = new Date(DMY[2], String(Number(DMY[1])-1), DMY[0]);
+            line.dataline.date = new Date(DMY[2], String(Number(DMY[1])-1), DMY[0]).toISOString();
             Main.modifydata(line.dataline, function(res) {
               if(res) {
                 line.canEdit = false;
