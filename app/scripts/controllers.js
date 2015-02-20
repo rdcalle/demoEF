@@ -88,9 +88,23 @@ var app = angular.module('demoEF')
 
           kendo.culture("es-ES"); // Para poner el DatePicker de kendo en español
 
+          // Función que almacena en LocalStorage el array de datos ordenado por fechas
+          function saveInLS(datas) {
+            var arrayData = []; var data = [];
+
+            for (var i=0; i<datas.length; i++) {
+              var newData = [new Date(datas[i].date), datas[i].value];
+              arrayData.push(newData);
+            }
+            window.localStorage.setItem('datas', JSON.stringify(arrayData));
+          }
+
+
           // Nos traemos todos los datos almacenados en la colección de datos
           Main.work(function(res) {
-            $scope.datas = res.data;
+            $scope.datas = res.data; // Vinculamos los datos al modelo
+            saveInLS($scope.datas);
+            drawChart();
           }, function() {
             $rootScope.error = 'Falló el acceso a los datos';
           });
@@ -110,6 +124,8 @@ var app = angular.module('demoEF')
                       $scope.datas.push(res.data);
                       $scope.date = {};
                       $scope.value = "";
+                      saveInLS($scope.datas);
+                      drawChart();
                   }
               }, function() {
                   $rootScope.error = 'Falló grabar el dato';
@@ -124,6 +140,8 @@ var app = angular.module('demoEF')
             Main.modifydata(line.dataline, function(res) {
               if(res) {
                 line.canEdit = false;
+                saveInLS($scope.datas);
+                drawChart();
               }
             }, function() {
               $rootScope.error = 'Falló modificar los datos';
@@ -147,6 +165,8 @@ var app = angular.module('demoEF')
               if(res) {
                 var i = $scope.datas.indexOf(line.dataline);
                 $scope.datas.splice(i, 1);
+                saveInLS($scope.datas);
+                drawChart();
                 line.dataline = {};
               }
             }, function() {

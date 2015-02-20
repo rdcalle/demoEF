@@ -1,6 +1,6 @@
 <div class="row" data-ng-controller="WorkCtrl">
     <div class="col-sm-6 col-xs-12">
-      <div class="panel panel-primary">
+      <div id="panel-datos" class="panel panel-primary">
           <div class="panel-heading">
               <strong>Introducción de datos</strong>
           </div>
@@ -11,8 +11,8 @@
                   class="form-horizontal" role="form">
 
                 <div class="form-group">
-                  <label for="date" class="col-md-2 col-sm-2 control-label">Fecha</label>
-                  <div class="col-md-6 col-sm-8">
+                  <label for="date" class="col-md-2 col-sm-2 col-xs-2 control-label">Fecha</label>
+                  <div class="col-md-6 col-sm-8 col-xs-4">
                     <input kendo-date-picker class="form-control"
                           placeholder="dd/mm/aaaa" pattern="^\d{2}\/\d{2}\/\d{4}$"
                            ng-model="date"
@@ -23,11 +23,11 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="value" class="col-md-2 col-sm-2 control-label">Valor</label>
-                  <div class="col-md-4 col-sm-4">
+                  <label for="value" class="col-md-2 col-sm-2 col-xs-2 control-label">Valor</label>
+                  <div class="col-md-4 col-sm-4 col-xs-4">
                     <input type="number" min="0" max="100" id="value" ng-model="value" placeholder="0..100" class="form-control" required>
                   </div>
-                  <div class="col-md-offset-3 col-md-2 col-sm-offset-1 col-sm-1">
+                  <div class="col-md-offset-3 col-md-2 col-sm-offset-1 col-sm-1 col-xs-offset-2 col-xs-1">
                     <button type="submit" class="btn btn-primary">
                       <i class="glyphicon glyphicon-plus"></i> Añadir
                     </button>
@@ -84,14 +84,21 @@
       </div>
     </div>
 
-    <div class="col-xs-6 col-xs-12">
-      <div class="panel panel-primary">
+    <div class="col-sm-6 col-xs-12">
+      <div id="panel-graficos" class="panel panel-primary">
           <div class="panel-heading">
               <strong>Interpretación gráfica de los datos</strong>
           </div>
           <div class="panel-body">
             <div class="panel-datos">
-                Espacio con el gráfico de interpretación de los datos
+              <div class="container">
+                <div class="row row-centered">
+                  <div class="col-centered"><h3>Diagrama de línea</h3></div>
+                </div>
+              </div>
+              <div class="wrap-chart">
+                <div id="chart"></div>
+              </div>
             </div>
           </div>
       </div>
