@@ -2,7 +2,6 @@ function drawChart() {
 
   var data = new google.visualization.DataTable();
   var arrayData = [
-    [0, 0]
   ];
 
   var newArrayData = JSON.parse(window.localStorage.getItem('datas'));
