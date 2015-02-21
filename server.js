@@ -11,7 +11,7 @@ var User = require('./app/models/User');
 var Data = require('./app/models/Data');
 
 // Connect to DB
-mongoose.connect(process.env.MONGO_URL || 'mongodb://demo:demo@127.0.0.1/demoEF');
+mongoose.connect(process.env.MONGO_URL || 'mongodb://demo:demo@87.106.207.155/demoEF');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
