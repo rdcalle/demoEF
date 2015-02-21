@@ -3,7 +3,7 @@
 
   angular.module('demoEF')
       .factory('Main', ['$http', function($http){
-          var baseUrl = "http://localhost:3001";
+          var baseUrl = "http://87.106.207.155:3001";
           function changeUser(user) {
               angular.extend(currentUser, user);
           }
