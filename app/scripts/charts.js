@@ -2,9 +2,7 @@ function drawChart() {
 
   var data = new google.visualization.DataTable();
   var arrayData = [
-    [new Date(2011,0,12), 5],
-    [new Date(2011,1,11), 10],
-    [new Date(2011,3,11), 23]
+    [0, 0]
   ];
 
   var newArrayData = JSON.parse(window.localStorage.getItem('datas'));
